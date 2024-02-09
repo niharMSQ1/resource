@@ -1,0 +1,24 @@
+{% extends "globaltoc.html" %}
+
+{% block globaltoc %}
+<nav class="bd-links">
+  <ul class="list-unstyled">
+    {% for item in globaltoc.entries %}
+      <li class="nav-item">
+        {% if item.children %}
+          <a class="nav-link" href="#">{{ item.title }}</a>
+          <ul class="nav flex-column">
+            {% for subitem in item.children %}
+              <li class="nav-item">
+                <a class="nav-link" href="{{ subitem.url }}">{{ subitem.title }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <a class="nav-link" href="{{ item.url }}">{{ item.title }}</a>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+</nav>
+{% endblock %}
